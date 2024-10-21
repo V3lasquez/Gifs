@@ -1,0 +1,53 @@
+<div class="container mt-4">
+    <h3 class="text-white">GifsApp</h3>
+    <div class="row">
+      <!-- Historial de Búsquedas -->
+      <div class="col-12 col-md-3 mb-4">
+        <div class="list-group">
+          <button 
+            class="list-group-item list-group-item-action"
+            *ngFor="let search of searchHistory" 
+            (click)="searchFromHistory(search)"
+          >
+            {{ search }}
+          </button>
+        </div>
+      </div>
+  
+      <!-- Resultados de la Búsqueda -->
+      <div class="col-12 col-md-9">
+        <!-- Buscador -->
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Buscar gifs..."
+            [(ngModel)]="currentSearch"
+            (keyup.enter)="onSearch()"
+          />
+        </div>
+  
+        <!-- Grid de Gifs -->
+        <div class="row">
+          <!-- Iterar sobre los GIFs -->
+          <div 
+            *ngFor="let gif of gifs" 
+            class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
+          >
+            <div class="card h-100">
+              <img 
+                [src]="gif.images.downsized_medium.url" 
+                class="card-img-top" 
+                alt="GIF"
+              />
+              <div class="card-body">
+                <p class="card-text">{{ gif.title }}</p>
+                <p class="card-text text-muted">{{ gif.username }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
